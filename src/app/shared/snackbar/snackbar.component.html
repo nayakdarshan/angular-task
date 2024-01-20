@@ -1,0 +1,10 @@
+
+
+<div class="snackbar-wrapper">
+    <div class="snakbody success" *ngIf="data.status == 'success'">
+        {{ data.message }}
+    </div>
+    <div class="snakbody failure" *ngIf="data.status == 'failure'">
+        {{ data.message }}
+    </div>
+</div>

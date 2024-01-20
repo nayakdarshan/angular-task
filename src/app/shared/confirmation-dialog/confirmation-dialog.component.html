@@ -1,0 +1,9 @@
+<div class="confirmation-wrapper">
+    <div class="confirmation-text">
+        <div>Do you want to delete the group : {{groupName}}?</div>
+    </div>
+    <div class="confirmation-button-container">
+        <button class="confirmation-button btn btn-danger" [mat-dialog-close]="{'buttonName': 'CONFIRM'}">Confirm</button>
+        <button class="confirmation-button btn btn-success" [mat-dialog-close]="{'buttonName': 'CANCEL'}">Cancel</button>
+    </div>
+</div>

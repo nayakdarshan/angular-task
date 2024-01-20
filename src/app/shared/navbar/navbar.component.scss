@@ -1,0 +1,23 @@
+.navbar-info-container{
+    display: flex;
+    align-self: center;
+    .nabar-info{
+        display: flex;
+        align-self: center;
+        margin:0 10px;
+    }
+    .navbar-profile-container{
+        height:50px;
+        width:50px;
+        border-radius: 50%;
+        background-color: green;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin:0 10px;
+        .navbar-profile-text{
+            color:#ffffff;
+            text-align: center;
+        }
+    }
+}

@@ -1,0 +1,53 @@
+
+<div class="dialog-wrapper">
+    <div class="container">
+        <div class="dialog-header">
+            <h1 class="dialog-title">{{operation}} Group</h1>
+            <mat-icon class="global-icon" (click)="closeDialog()">clear</mat-icon>
+        </div>
+        <hr>
+        <div class="dialog-form-wrapper">
+            <form [formGroup]="mainGroupForm">
+                <div class="dialog-input-container">
+                    <label for="groupName" class="dialog-label">Group Name</label>
+                    <input matInput type="text" class="dialog-input" formControlName="groupName" #groupName>
+                </div>
+                <div class="dialog-input-container">
+                    <label for="adminName" class="dialog-label">Admin Name</label>
+                    <input matInput type="text" class="dialog-input" formControlName="adminName" #adminName>
+                </div>
+                <div class="dialog-input-container"> 
+                    <label for="memberName" class="dialog-label">Member Name</label>
+                    <input matInput type="text" class="dialog-input" [matChipInputFor]="chipGrid" (matChipInputTokenEnd)="add($event)" #memberName/>
+                </div>
+                <div class="dialog-member-container" (click)="triggerAddMember()">
+                    <div class="dialog-member">
+                        <mat-icon>add_circle_outline</mat-icon>
+                        <p class="dialog-add-member">Add Member</p>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="dialog-members-section">
+            <mat-chip-grid #chipGrid>
+                @for (member of members; track member) {
+                  <mat-chip-row
+                    (removed)="remove(member)"
+                    [editable]="true"
+                    (edited)="edit(member, $event)"
+                    [aria-description]="'press enter to edit ' + member.name">
+                    {{member.name}}
+                    <button matChipRemove [attr.aria-label]="'remove ' + member.name">
+                      <mat-icon>cancel</mat-icon>
+                    </button>
+                  </mat-chip-row>
+                }
+              </mat-chip-grid>
+        </div>
+        <div class="dialog-buttons">
+            <button (click)="submitForm(mainGroupForm.value)" class="button">{{operation == 'Create'? 'Save':'Update'}}</button>
+            <button (click)="pasteGroup()" class="btn btn-primary ms-2" *ngIf="copiedGroup">Paste Copied Group</button>
+
+        </div>
+    </div>
+</div>

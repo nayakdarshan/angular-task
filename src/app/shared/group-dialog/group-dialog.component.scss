@@ -1,0 +1,84 @@
+.dialog-wrapper{
+    padding:20px;
+    .dialog-header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding:0 30px;
+        .dialog-title{
+            margin:0;
+        }
+    }
+    .dialog-form-wrapper{
+        // margin:0 auto;
+        width: max-content;
+        padding:0 30px;
+        .dialog-input-container{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top:30px;
+            .dialog-label{
+                font-size:24px;
+                margin-right: 20px;
+            }
+            .dialog-input{
+                min-height:40px;
+                border-radius:5px;
+            }
+        }
+        .dialog-member-container{
+            cursor: pointer;
+            width:max-content;
+            // display: flex;
+            // flex-direction: column;
+            // align-items: center;
+            // justify-content: end;
+            text-align: right;
+            position: relative;
+            left: 110%;
+            bottom: 45px;           
+            mat-icon{
+                margin-right:28%;
+            }
+            ::ng-deep .material-icons{
+                font-size: 32px !important; 
+                height: 32px;
+                width:32px;
+            }
+            
+            .dialog-add-member{
+                font-size:12px;
+                margin-bottom: 0;
+            }
+            .dialog-member{
+                display: flex;
+                flex-direction: column;
+                align-items: end;
+                justify-content: end;
+            }
+        }
+    }
+    .dialog-members-section{
+        padding:0 30px;
+        ::ng-deep .mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled){
+            border-radius:8px !important;
+        }
+    }
+    .dialog-buttons{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top:30px;
+        .button{
+            width:35%;
+            background-color:green;
+            color: #ffffff;
+            outline: 0;
+            border: 0;
+            border-radius: 5px;
+            min-height: 40px;
+            font-size: 18px;        
+        }
+    }
+}

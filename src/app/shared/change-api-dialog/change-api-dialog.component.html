@@ -1,0 +1,7 @@
+<div class="change-wrapper">
+    <div>
+        <input matInput type="text" placeholder="Enter API key here" class="change-input" #apiKey>
+    </div>
+    <button class="btn btn-success mt-3" (click)="changeApiKey(apiKey.value)">Enter</button>
+    <div class="mt-3">Your API key is expired. please enter the key from <span><a href="https://crudcrud.com/" target="_blank">https://crudcrud.com/</a>.</span></div>
+</div>

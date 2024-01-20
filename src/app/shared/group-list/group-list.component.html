@@ -1,0 +1,68 @@
+
+<div class="groups-container">
+    <div class="group-header-wrapper">
+        <button (click)="createGroup('Create')">Create Group</button>
+        <input type="text" placeholder="Search" class="group-header-input">
+    </div>
+    <div class="groups-data" *ngIf="data?.length > 0 && !loader">
+        <mat-accordion>
+            <mat-expansion-panel [expanded]="false" hideToggle [disabled]="true">
+              <mat-expansion-panel-header>
+                    <div class="group-accordion-header">
+                        <div class="group-header-slno">Sl.no</div>
+                        <div class="group-header-name">Group Name</div>
+                        <div class="group-header-actions">Actions</div>
+                    </div>
+              </mat-expansion-panel-header>
+            </mat-expansion-panel>
+          </mat-accordion>
+    </div>
+    <div class="groups-data" *ngIf="data?.length <= 0 && !loader">
+       <div class="groups-error">No Group Data Available</div>
+    </div>
+    <div class="groups-data" *ngIf="loader">
+        <div class="groups-loader">
+            <div class="loader">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+                <div class="bar4"></div>
+                <div class="bar5"></div>
+                <div class="bar6"></div>
+                <div class="bar7"></div>
+                <div class="bar8"></div>
+                <div class="bar9"></div>
+                <div class="bar10"></div>
+                <div class="bar11"></div>
+                <div class="bar12"></div>
+            </div>
+        </div>
+     </div>
+    <div *ngIf="data?.length > 0 && !loader">
+        <div class="groups-data" *ngFor="let d of data;let i=index;">
+            <mat-accordion>
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" [expanded]="i === initialExpandedIndex">
+                <mat-expansion-panel-header>
+                        <div class="group-accordion-header">
+                            <div class="group-header-slno">{{i+1}}</div>
+                            <div class="group-header-name">{{d?.groupName}}</div>
+                            <div class="group-header-actions">
+                                <mat-icon class="group-action-icon" (click)="removeItem(d)">delete</mat-icon>
+                                <mat-icon class="group-action-icon" (click)="copyItem(d)">file_copy</mat-icon>
+                                <mat-icon class="group-action-icon" (click)="editItem(d,'Edit')">edit</mat-icon>
+                            </div>
+                        </div>
+                </mat-expansion-panel-header>
+                <div class="group-members-chips">
+                        <mat-chip *ngFor="let member of d?.memberNames; trackBy: trackByFn" class="group-member-chips">
+                            {{ member.name}}
+                            <mat-icon>cancel</mat-icon>
+                        </mat-chip>
+                </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+    </div>
+    
+      
+</div>
