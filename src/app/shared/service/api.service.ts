@@ -24,6 +24,9 @@ export class ApiService {
     view():Observable<any[]>{
       return this.http.get<any[]>(this.urls.create);
     }
+    search(id:any):Observable<any[]>{
+      return this.http.get<any[]>(this.urls.create+'/'+id);
+    }
     edit(id:any,reqbody:any):Observable<any[]>{
       return this.http.put<any[]>(this.urls.create +'/'+id, reqbody);
     }

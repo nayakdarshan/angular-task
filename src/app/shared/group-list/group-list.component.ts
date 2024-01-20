@@ -9,6 +9,9 @@ import {LiveAnnouncer} from '@angular/cdk/a11y';
 import { GroupDialogComponent } from '../group-dialog/group-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import { group } from '@angular/animations';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackbarComponent } from '../snackbar/snackbar.component';
 export interface Member {
   name: string;
 }
@@ -39,6 +42,7 @@ export class GroupListComponent implements OnInit{
   constructor(
     public apiService:ApiService,
     public dialog:MatDialog,
+    public snackbar:MatSnackBar,
   ){
     this.showChangeApiButton.emit(false);
   }
@@ -57,6 +61,32 @@ export class GroupListComponent implements OnInit{
       this.getGroups();
     });
   }
+
+  search(val:any){
+    console.log(val);
+    if(val){
+      const result = this.data.find((group: { groupName: any; }) => group.groupName === val);
+      console.log(result)
+    if (result) {
+      var id=result._id;
+    }
+    else{
+      this.data=[];
+    }
+    this.loader = true;
+    this.data = [];
+    this.apiService.search(id).subscribe((re:any)=>{
+    this.data.push(re);
+    setTimeout(()=>{this.loader=false},1000);
+    },(err)=>{
+      this.data = [];
+      this.loader = false;
+    })
+    } else{
+      this.getGroups();
+    }
+  }
+
   getGroups(){
     this.loader=true;
     this.apiService.view().subscribe((res: any) => {
@@ -123,6 +153,14 @@ export class GroupListComponent implements OnInit{
           this.apiService.delete(group._id).subscribe((res: any) => {
             console.log(res);
             this.getGroups();
+            this.snackbar.openFromComponent(SnackbarComponent,{
+              duration: 4000,
+                    data: {
+                      status: "success",
+                      message: "Group successfully Deleted"
+                    },
+                    panelClass:['.success']
+            })
           })
         }
       });
@@ -134,7 +172,16 @@ export class GroupListComponent implements OnInit{
     if(group){
       navigator.clipboard.writeText(group);
       sessionStorage.setItem('copiedGroup',JSON.stringify(group));
+      this.snackbar.openFromComponent(SnackbarComponent,{
+        duration: 4000,
+              data: {
+                status: "success",
+                message: "Group successfully Copied"
+              },
+              panelClass:['.success']
+      })
     }
+    
   }
   editItem(group:any,operation:any){
     sessionStorage.setItem('operation',operation);

@@ -75,14 +75,6 @@ export class GroupDialogComponent {
       sessionStorage.removeItem('groupData');
       this.buildForm(JSON.parse(this.group));
     }
-    this.snackbar.openFromComponent(SnackbarComponent,{
-      duration: 40000,
-            data: {
-              status: "success",
-              message: "Group successfully created"
-            },
-            panelClass:['snackbar-wrapper']
-    })
   }
   buildForm(group:any){
       
@@ -156,7 +148,7 @@ export class GroupDialogComponent {
         console.log(res);
         this.closeDialog();
         this.snackbar.openFromComponent(SnackbarComponent,{
-          duration: 40000,
+          duration: 4000,
                 data: {
                   status: "success",
                   message: "Group successfully created"
@@ -169,6 +161,14 @@ export class GroupDialogComponent {
         this.apiService.incrementApiCall(this.group._id);
         localStorage.setItem('updatedGroups',JSON.stringify(this.apiCallCount));
         this.closeDialog();
+        this.snackbar.openFromComponent(SnackbarComponent,{
+          duration: 4000,
+                data: {
+                  status: "success",
+                  message: "Group successfully Updated"
+                },
+                panelClass:['.success']
+        })
       })
     }
   }

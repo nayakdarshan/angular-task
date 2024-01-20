@@ -2,7 +2,7 @@
 <div class="groups-container">
     <div class="group-header-wrapper">
         <button (click)="createGroup('Create')">Create Group</button>
-        <input type="text" placeholder="Search" class="group-header-input">
+        <input type="text" placeholder="Search" class="group-header-input" (blur)="search(searchInput.value)" (keyup.enter)="search(searchInput.value)" #searchInput>
     </div>
     <div class="groups-data" *ngIf="data?.length > 0 && !loader">
         <mat-accordion>

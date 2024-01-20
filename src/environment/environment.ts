@@ -1,4 +1,4 @@
 export const environment ={
     server : 'https://crudcrud.com/api/',
-    APIKey : '08f38b10d11240cea6e85672b81159ac',
+    APIKey : 'b68f11f6d8e041baaf4ebd7fc311110f',
 }

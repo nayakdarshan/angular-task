@@ -46,7 +46,7 @@
         </div>
         <div class="dialog-buttons">
             <button (click)="submitForm(mainGroupForm.value)" class="button">{{operation == 'Create'? 'Save':'Update'}}</button>
-            <button (click)="pasteGroup()" class="btn btn-primary ms-2" *ngIf="copiedGroup">Paste Copied Group</button>
+            <button (click)="pasteGroup()" class="btn btn-primary ms-2" *ngIf="copiedGroup && operation === 'Create'">Paste Copied Group</button>
 
         </div>
     </div>
